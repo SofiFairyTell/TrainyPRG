@@ -13,22 +13,33 @@
 void printData();
 void EnterDataReturnSum_С();
 void EnterDataReturnSum_СPP();
+void countFunction();
 
-double InputNumber();
+double doubleInputNumber();
+int intInputNumber();
 
+double countH(double a, double b, int n);
+double countX(double a, double b, double h);
 
 int main()
 {
 	setlocale(LC_CTYPE, "");
+    //ТЗ1
 	printData();
     EnterDataReturnSum_С();
     EnterDataReturnSum_СPP();
+    //ТЗ2
+
 }
 
 
 /* ТЗ1
 * 1. Вывести ФИО и номер группы на CPP и на С
 * 2. Ввести два числа с клавиатуры, проссумировать и отобразить результат
+*/
+
+/* ТЗ2
+* Найдем значение функции. Будем использовать цикл for
 */
 
 //А теперь напишем, что внутри функций
@@ -120,7 +131,68 @@ void EnterDataReturnSum_СPP()
 */
 }
 
+void countFunction() {
+    double a, b;
+    int N;
+    //Ининициализация
+    N = intInputNumber();
+    a = doubleInputNumber();
+    b = doubleInputNumber();
+    
+}
 
-/* ТЗ2
-* Найдем значение функции. Будем использовать цикл for
-*/
+
+
+double doubleInputNumber()
+{
+    double num;
+    std::cout << "Используем C++" << std::endl;
+    while (true) {
+        std::cout << "Введите число: ";
+        if (std::cin >> num) {
+            break; // Выход из цикла, если введено число
+        }
+        else {
+            std::cerr << "Ошибка: Введите число." << std::endl;
+            std::cin.clear(); // Сброс состояния потока
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // Очистка буфера ввода
+        }
+    }
+}
+
+int intInputNumber()
+{
+    int num;
+    std::cout << "Используем C++" << std::endl;
+    while (true) {
+        std::cout << "Введите число: ";
+        if (std::cin >> num) {
+            break; // Выход из цикла, если введено число
+        }
+        else {
+            std::cerr << "Ошибка: Введите число." << std::endl;
+            std::cin.clear(); // Сброс состояния потока
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // Очистка буфера ввода
+        }
+    }
+}
+
+
+//Функция расчета H. На вход переменные. 
+double countH(double a, double b, int n) 
+{
+    if (n != 0)
+    {
+        return (b - a) / n;
+    }
+    else
+    {
+        return 0;
+    }
+}
+
+//Функция расчета Xi. На вход переменные. 
+double countX(double a, double i, double h)
+{
+    return a + i * h;
+}
