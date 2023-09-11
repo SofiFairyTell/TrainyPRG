@@ -20,6 +20,7 @@ int intInputNumber();
 
 double countH(double a, double b, int n);
 double countX(double a, double b, double h);
+double FunctionY(double x);
 
 int main()
 {
@@ -29,7 +30,7 @@ int main()
     EnterDataReturnSum_С();
     EnterDataReturnSum_СPP();
     //ТЗ2
-
+    countFunction();
 }
 
 
@@ -132,13 +133,39 @@ void EnterDataReturnSum_СPP()
 }
 
 void countFunction() {
-    double a, b;
+    double a, b,h;
     int N;
     //Ининициализация
     N = intInputNumber();
     a = doubleInputNumber();
     b = doubleInputNumber();
-    
+    h = countH(a,b, N); //шаг от а до b
+
+    double maxValue = FunctionY(a); //предполагаем, что максимум в начале интервала
+
+    int count = 1; //это для того, чтобы посчитать элементы в массиве
+    double sum = 0.0; //это для того, чтобы рассчитать потом средее значение
+
+    for (double x = a + h; x <= b; x += h) {
+        double value = FunctionY(x);
+
+        // Вычисление максимального значения
+        if (value > maxValue) {
+            maxValue = value;
+        }
+
+        // Вычисление суммы для среднего значения
+        sum += value;
+        count++;
+
+        std::cout << "Y: " << value << "X: " << std::endl;
+    }
+
+    double average_value = sum / count;
+
+    std::cout << "Максимальное значение: " << maxValue << std::endl;
+    std::cout << "Среднее значение: " << average_value << std::endl;
+
 }
 
 
@@ -158,6 +185,7 @@ double doubleInputNumber()
             std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // Очистка буфера ввода
         }
     }
+    return num;
 }
 
 int intInputNumber()
@@ -175,6 +203,7 @@ int intInputNumber()
             std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // Очистка буфера ввода
         }
     }
+    return num;
 }
 
 
@@ -195,4 +224,12 @@ double countH(double a, double b, int n)
 double countX(double a, double i, double h)
 {
     return a + i * h;
+}
+
+double FunctionY(double x)
+{
+    if (x > 0)
+    {
+        return (x) / (pow(x, 2) - 1) + (log(x)/log(3.0));
+    }
 }
