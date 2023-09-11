@@ -153,7 +153,7 @@ void countFunction() {
         sum += value;
         count++;
 
-        std::cout << "Y: " << value << "X: " << std::endl;
+        std::cout << "Y: " << value << "X: " << x <<std::endl;
     }
 
     double average_value = sum / count;
